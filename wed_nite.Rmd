@@ -1,0 +1,58 @@
+---
+title: "Wed_Inclass"
+author: "Martha Leal Olmedo"
+date: "11/17/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# This is a quick-turn challenge.  It relates to Question 2 of Quiz 8 in our course. Take a look at that quiz question and then.
+
+## The researchers wanted to know if the spiders could run faster, on average, without the hindrance of a pedipalp
+
+### Finish this writeUp and knit the result to a pdf file.  
+
+### Email the pdf as an attachment to wkitto1@avc.edu no later than 10 pm tonight
+
+### Think about what you would need to do to add this to your github account
+
+
+
+```{r, message=FALSE}
+require(tidyverse)
+require(tigerstats)
+require(abd)
+data("SpiderSpeed")
+```
+
+```{r,}
+#mydata <- gather(SpiderSpeed, variable, value) 
+dat <- gather(SpiderSpeed, BorA, speed)
+```
+
+
+
+```{r}
+boxplot(speed~BorA,data=dat)
+title(main="Spider Speed")
+```
+
+Based off of this information, the spiders seem to run faster after having their padipalp removed than before having it removed. In more simple words, the spider speed.after is faster than the spider speed.before.The black line on each variable represents the median and speed.after has a higher median than speed.before, and there is a higher maximum in the speed.after plot.
+
+
+```{r}
+favstats(speed~BorA,data=dat)
+```
+
+From the information above it shows that the average speed for the speed.after is 3.8 and the average speed for the speed.before is 2.7.
+
+
+
+```{r}
+t.test(speed~BorA,data=dat)
+```
+
+The information above shows us that the p value is 0.0004611. So the p value that is shown is pretty small. It also shows that the speed.after mean is 3.853750 and the speed.before is 2.668125. Also the speed.after and speed.before are not equal to 0. Since the p value was pretty small, we reject the Null hypothesis.
+
+
